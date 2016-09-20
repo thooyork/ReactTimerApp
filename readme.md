@@ -1,1 +1,1 @@
-React BoilerPlate Application from Beginners Tutorial
+React Timer Application from udemy Beginners Tutorial
