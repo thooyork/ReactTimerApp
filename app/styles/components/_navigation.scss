@@ -1,0 +1,11 @@
+.top-bar,
+.top-bar .menu{
+  background-color:$nav-background;
+}
+.top-bar .menu .menu-text{
+  color:$nav-text-color;
+}
+
+.top-bar .menu .active{
+  font-weight: bold;
+}
