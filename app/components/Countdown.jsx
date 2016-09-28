@@ -29,8 +29,7 @@ var Countdown = React.createClass({
   },
   resetTimer:function(){
     this.setState({
-      secs:0,
-      alarmclass:null
+      secs:0
     });
     clearInterval(this.interval);
   },
@@ -43,6 +42,7 @@ var Countdown = React.createClass({
       if (newCount < 0){
         newCount = 0;
       }
+
       if(newCount === 0){
         cStat = 'stopped';
         newAlarm = 'alarm';
@@ -77,10 +77,22 @@ var Countdown = React.createClass({
         return (<CountdownForm setCountdown={this.handleSetCountdown}/>);
       }
     };
+
+    var showAlarm = () => {
+      if(alarmclass === 'alarm'){
+        return (
+          <audio autoPlay>
+            <source src="/audio/alarm.mp3" type="audio/mpeg"/>
+          </audio>
+        );
+      }
+    };
+
     return(
       <div>
         <Clock alarmclass={alarmclass} seconds={secs}/>
         {renderControlArea()}
+        {showAlarm()}
       </div>
     );
   }
