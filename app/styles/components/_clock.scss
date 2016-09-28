@@ -11,6 +11,14 @@
   background-color:rgba(90,200,255,.25);
   color:#FFF;
   text-align:center;
+  transition-duration: .25s;
+}
+
+
+.alarm{
+  border:2px solid rgba(255,50,50,1)!important;
+  background-color:rgba(255,50,50,.25)!important;
+  color:#FFF;
 }
 
 .clock .text{

@@ -3,9 +3,11 @@ var React = require('react');
 var Clock = React.createClass({
   getDefaultProps:function(){
     seconds:0
+    alarmclass:null
   },
   propTypes:{
-    seconds:React.PropTypes.number
+    seconds:React.PropTypes.number,
+    alarmclass:React.PropTypes.string
   },
   addLeadingZero:function(num){
     if(num <= 9){
@@ -23,8 +25,8 @@ var Clock = React.createClass({
       return mins + ':' + secs;
   },
   render:function(){
-  return(
-      <div className="clock">
+    return(
+      <div className={"clock " + (this.props.alarmclass)}>
         <div className="text">
           {this.formatSeconds(this.props.seconds)}
         </div>

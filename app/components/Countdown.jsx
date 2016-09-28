@@ -5,14 +5,16 @@ var Controls = require('Controls');
 
 var Countdown = React.createClass({
   getInitialState:function(){
-    return{ secs:0 }
+    return{ secs:0,
+    alarmclass:null }
   },
   intVal:null,
-  startCountdown:function(counter){
+  handleStartCountdown:function(counter){
     var that = this;
 
     this.setState({
-      secs:parseInt(counter)
+      secs:parseInt(counter, 10),
+      alarmclass:null
     });
 
     if(this.intVal != null){
@@ -21,14 +23,18 @@ var Countdown = React.createClass({
 
     this.intVal = setInterval(function(){
       counter -= 1;
-      if(counter >= 0){
+      if(counter > 0){
         that.setState({
           secs:counter
         });
       }
       else{
         clearInterval(that.intVal);
-        alert('ALARM!');
+        //ALARM !
+        that.setState({
+          secs:counter,
+          alarmclass:'alarm'
+        })
       }
     },1000);
 
@@ -37,8 +43,8 @@ var Countdown = React.createClass({
   render:function(){
     return(
       <div>
-        <Clock seconds={this.state.secs}/>
-        <Controls startCountdown={this.startCountdown}/>
+        <Clock alarmclass={this.state.alarmclass} seconds={this.state.secs}/>
+        <Controls startCountdown={this.handleStartCountdown}/>
       </div>
     );
   }

@@ -5,17 +5,17 @@ var Controls = React.createClass({
     e.preventDefault();
     var startsecs = this.refs.secstart.value;
 
-    if(startsecs && startsecs > 0){
+    if(startsecs.match(/^[0-9]*$/) && startsecs > 0){
       this.props.startCountdown(startsecs);
       this.refs.secstart.value = '';
     }
   },
   render:function(){
     return(
-      <div>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" ref="secstart"/>
-          <input type="submit" value="start"/>
+      <div className="form-wrapper">
+        <form onSubmit={this.onSubmit} className="countdown-form">
+          <input type="text" placeholder="Enter time in seconds" ref="secstart"/>
+          <input type="submit" value="start" className="button expanded"/>
         </form>
       </div>
     );
