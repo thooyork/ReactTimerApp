@@ -4,19 +4,19 @@ var expect = require('expect');
 var $ = require('jQuery');
 var TestUtils = require('react-addons-test-utils');
 
-var Controls = require('Controls');
+var CountdownForm = require('CountdownForm');
 
-describe('Countdown Controls', () => {
+describe('CountdownForm', () => {
   it('Should exist', () => {
-    expect(Controls).toExist();
+    expect(CountdownForm).toExist();
   });
 
   it('Should call setCountdwon if valid seconds entered', () => {
     var spy = expect.createSpy();
-    var countdownControls = TestUtils.renderIntoDocument(<Controls setCountdown={spy}/>);
-    var $el = $(ReactDOM.findDOMNode(countdownControls));
+    var theForm = TestUtils.renderIntoDocument(<CountdownForm setCountdown={spy}/>);
+    var $el = $(ReactDOM.findDOMNode(theForm));
 
-    countdownControls.refs.secstart.value = '109';
+    theForm.refs.secstart.value = '109';
     TestUtils.Simulate.submit($el.find('form')[0]);
 
     expect(spy).toHaveBeenCalledWith(109);
