@@ -11,14 +11,16 @@ describe('Countdown Controls', () => {
     expect(Controls).toExist();
   });
 
-  it('should call startCountdown if valid secs entered', () => {
-      var spy = expect.createSpy();
-      var countdownControls = TestUtils.renderIntoDocument(<Controls startCountdown={spy}/>);
-      var $el = $(ReactDOM.findDOMNode(countdownControls));
+  it('Should call setCountdwon if valid seconds entered', () => {
+    var spy = expect.createSpy();
+    var countdownControls = TestUtils.renderIntoDocument(<Controls setCountdown={spy}/>);
+    var $el = $(ReactDOM.findDOMNode(countdownControls));
 
-      countdownControls.refs.secstart.value = '109';
-      TestUtils.Simulate.submit($el.find('.countdown-form')[0]);
+    countdownControls.refs.secstart.value = '109';
+    TestUtils.Simulate.submit($el.find('form')[0]);
 
-      expect(spy).toHaveBeenCalledWith(109);
+    expect(spy).toHaveBeenCalledWith(109);
   });
+
+
 });

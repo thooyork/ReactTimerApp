@@ -6,7 +6,7 @@ var Controls = React.createClass({
     var startsecs = this.refs.secstart.value;
 
     if(startsecs.match(/^[0-9]*$/) && startsecs > 0){
-      this.props.startCountdown(startsecs);
+      this.props.setCountdown(startsecs);
       this.refs.secstart.value = '';
     }
   },

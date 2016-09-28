@@ -6,45 +6,47 @@ var Controls = require('Controls');
 var Countdown = React.createClass({
   getInitialState:function(){
     return{ secs:0,
+      countdownStatus:'stopped',
     alarmclass:null }
   },
-  intVal:null,
-  handleStartCountdown:function(counter){
-    var that = this;
-
+  componentDidUpdate:function(prevProps, prevState){
+    if(this.state.countdownStatus !== prevState.countdownStatus){
+      switch (this.state.countdownStatus) {
+        case 'started':
+          this.startTimer();
+          break;
+      }
+    }
+  },
+  startTimer:function(){
+    this.interval = setInterval(() => {
+      var newCount = this.state.secs - 1;
+      var newAlarm = null;
+      if (newCount < 0){
+        newCount = 0
+      }
+      if(newCount === 0){
+        newAlarm = 'alarm';
+      }
+      this.setState({
+        secs: newCount,
+        alarmclass:newAlarm
+      });
+    }, 1000);
+  },
+  handleSetCountdown:function(seconds){
     this.setState({
-      secs:parseInt(counter, 10),
+      secs:parseInt(seconds, 10),
+      countdownStatus:'started',
       alarmclass:null
     });
-
-    if(this.intVal != null){
-      clearInterval(this.intVal);
-    }
-
-    this.intVal = setInterval(function(){
-      counter -= 1;
-      if(counter > 0){
-        that.setState({
-          secs:counter
-        });
-      }
-      else{
-        clearInterval(that.intVal);
-        //ALARM !
-        that.setState({
-          secs:counter,
-          alarmclass:'alarm'
-        })
-      }
-    },1000);
-
   },
 
   render:function(){
     return(
       <div>
         <Clock alarmclass={this.state.alarmclass} seconds={this.state.secs}/>
-        <Controls startCountdown={this.handleStartCountdown}/>
+        <Controls setCountdown={this.handleSetCountdown}/>
       </div>
     );
   }
