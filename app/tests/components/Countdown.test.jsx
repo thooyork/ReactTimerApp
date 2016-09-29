@@ -11,8 +11,9 @@ describe('Countdown Component',() =>{
     expect(Countdown).toExist();
   });
 
-  describe('handleSetCountdown', (done) => {
-    it('Should set state to started and count down', () => {
+  describe('handleSetCountdown', () => {
+
+    it('Should set state to started and count down', (done) => {
 
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
       countdown.handleSetCountdown(10);
@@ -27,7 +28,7 @@ describe('Countdown Component',() =>{
 
     });
 
-    it('Should never be negative count', () => {
+    it('Should never be negative count', (done) => {
 
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
       countdown.handleSetCountdown(1);
@@ -38,6 +39,33 @@ describe('Countdown Component',() =>{
       },3001);
 
     });
+
+
+    it('shoud pause countdown on paused status ', (done) => {
+      var countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(3);
+      countdown.handleStatusChange('paused');
+
+      setTimeout(() => {
+        expect(countdown.state.secs).toBe(3);
+        expect(countdown.state.countdownStatus).toBe('paused');
+        done();
+      }, 1003);
+    });
+
+
+    it('shoud reset count on stopped status ', (done) => {
+      var countdown = TestUtils.renderIntoDocument(<Countdown/>);
+      countdown.handleSetCountdown(3);
+      countdown.handleStatusChange('stopped');
+
+      setTimeout(() => {
+        expect(countdown.state.secs).toBe(0);
+        expect(countdown.state.countdownStatus).toBe('stopped');
+        done();
+      }, 1003);
+    });
+
 
 
   });
