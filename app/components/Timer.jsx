@@ -29,12 +29,9 @@ var Timer = React.createClass({
   },
   startTimer:function(){
     this.interval = setInterval(() => {
-      var newCount = this.state.secs + 1;
-      var tStat = this.state.timerStatus;
-
       this.setState({
-        secs: newCount,
-        timerStatus:tStat
+        secs: this.state.secs + 1,
+        timerStatus:this.state.timerStatus
       });
     }, 1000);
   },
