@@ -58,7 +58,7 @@ var Timer = React.createClass({
       <div>
         <h1 className="page-title">Timer</h1>
         <Clock seconds={secs}/>
-        <Controls countdownStatus={timerStatus} pauseTitle="Stop" onStatusChange={this.handleStatusChange}/>
+        <Controls countdownStatus={timerStatus} resetBtnClass="secondary" pauseTitle="Stop" onStatusChange={this.handleStatusChange}/>
       </div>
     );
   }

@@ -12,7 +12,7 @@ var Controls = React.createClass({
     }
   },
   render:function(){
-    var {countdownStatus, pauseTitle} = this.props;
+    var {countdownStatus, pauseTitle, resetBtnClass} = this.props;
     var renderStartStopButton = () => {
       if(countdownStatus === 'started'){
         return <button onClick={this.onStatusChange('paused')} className="button secondary">{pauseTitle}</button>
@@ -25,7 +25,7 @@ var Controls = React.createClass({
       <div className="form-wrapper">
         <div className="controls">
           {renderStartStopButton()}
-          <button onClick={this.onStatusChange('stopped')} className="button alert hollow">Reset</button>
+          <button onClick={this.onStatusChange('stopped')} className={"button hollow " + resetBtnClass}>Reset</button>
         </div>
     </div>
     );
