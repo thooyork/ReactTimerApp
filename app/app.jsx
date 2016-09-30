@@ -7,7 +7,9 @@ var Countdown = require('Countdown');
 
 
 //Load foundation CSS FRamework
-require('style!css!foundation-sites/dist/foundation.min.css');
+//require('style!css!foundation-sites/dist/foundation.min.css');
+//wird uber sassLoader geladen
+
 $(document).foundation();
 
 //App CSS
